@@ -32,19 +32,19 @@ The analysis focuses on net work and efficiency while explicitly accounting for 
 
 The direct-fired reaction is represented by:
 
-\[
-2H_2 + O_2 \rightarrow 2H_2O
-\]
+$$
+2\,\mathrm{H_2} + \mathrm{O_2} \rightarrow 2\,\mathrm{H_2O}
+$$
 
-For a basis of 1 kg hydrogen:
+For a basis of $1\,\mathrm{kg}$ hydrogen:
 
-\[
-m_{O_2}=8\,m_{H_2}
-\]
+$$
+m_{\mathrm{O_2}} = 8\,m_{\mathrm{H_2}}
+$$
 
-\[
-m_{H_2O}=9\,m_{H_2}
-\]
+$$
+m_{\mathrm{H_2O}} = 9\,m_{\mathrm{H_2}}
+$$
 
 The model represents a recycle-dominated steam loop. The total circulating working-fluid mass is determined from the cycle heat balance, while the stoichiometric combustion-water production is tracked separately.
 
@@ -71,74 +71,68 @@ Water/steam properties are calculated using the `iapws` Python package based on 
 
 The isentropic outlet is obtained from:
 
-\[
+$$
 s_{4s}=s_3
-\]
+$$
 
 The actual turbine outlet is:
 
-\[
-h_4=h_3-\eta_t(h_3-h_{4s})
-\]
+$$
+h_4=h_3-\eta_t\left(h_3-h_{4s}\right)
+$$
 
 Turbine work:
 
-\[
-W_t=m_s(h_3-h_4)
-\]
-
+$$
+W_t=m_s\left(h_3-h_4\right)
+$$
 ### Pump
 
 The ideal pump outlet is approximated using:
 
-\[
-h_{2s}=h_1+v_1(P_2-P_1)
-\]
+$$
+h_{2s}=h_1+v_1\left(P_2-P_1\right)
+$$
 
 and the actual pump outlet is:
 
-\[
+$$
 h_2=h_1+\frac{h_{2s}-h_1}{\eta_p}
-\]
+$$
 
 ### Direct-fired working-fluid flow
 
-\[
+$$
 m_s=
 \frac{m_{H_2}LHV_{H_2}\eta_{comb}}
 {h_3-h_2}
-\]
+$$
 
 ### Direct-fired gross and net work
 
-\[
+$$
 W_{gross}=W_t-W_p
-\]
+$$
 
-\[
+$$
 W_{net,DFSC}=W_{gross}-W_{O_2,comp}
-\]
+$$
 
 ### Conventional Rankine
 
-\[
+$$
 m_s=
 \frac{m_{H_2}LHV_{H_2}\eta_{boiler}}
 {h_3-h_2}
-\]
+$$
 
-\[
+$$
 W_{net,Rankine}=W_t-W_p
-\]
+$$
 
 ### Net efficiency
 
-\[
-\eta_{net}=
-\frac{W_{net}}
-{m_{H_2}LHV_{H_2}}
-\]
-
+## $\eta_{net} = \frac{W_{net}}{m_{H_2}LHV_{H_2}}$
 ---
 
 ## 4. Baseline assumptions
@@ -178,37 +172,25 @@ The validated baseline model produces:
 
 The direct-fired configuration produces more gross turbine-cycle work:
 
-\[
-45.260 > 41.146\ {\rm MJ/kg_{H_2}}
-\]
+$45.260 > 41.146\ {\rm MJ/kg_{H_2}}$
 
 but the modeled oxygen-compression penalty is:
 
-\[
-7.828\ {\rm MJ/kg_{H_2}}
-\]
+$7.828\ {\rm MJ/kg_{H_2}}$
 
 Consequently, the DFSC net work is:
 
-\[
-37.432\ {\rm MJ/kg_{H_2}}
-\]
+$37.432\ {\rm MJ/kg_{H_2}}$
 
 compared with:
 
-\[
-41.146\ {\rm MJ/kg_{H_2}}
-\]
+$41.146\ {\rm MJ/kg_{H_2}}$
 
 for the conventional reference.
 
 Under the baseline assumptions, the modeled net-efficiency difference is:
 
-\[
-31.19-34.29
-=
-\boxed{-3.09\ {\rm percentage\ points}}
-\]
+$31.19-34.29=\boxed{-3.09\ {\rm percentage\ points}}$
 
 This is a **model-specific result**, not a general statement about all hydrogen direct-fired steam-cycle configurations.
 
@@ -222,15 +204,11 @@ The project includes explicit first-law and reaction-balance checks.
 
 For the steam-cycle boundary:
 
-\[
-Q_{in}=W_{gross}+Q_{out}
-\]
+$Q_{in}=W_{gross}+Q_{out}$
 
 The baseline DFSC residual is approximately:
 
-\[
-1.4\times10^{-14}\ {\rm MJ/kg_{H_2}}
-\]
+$1.4\times10^{-14}\ {\rm MJ/kg_{H_2}}$
 
 which is numerical round-off.
 
@@ -238,55 +216,33 @@ which is numerical round-off.
 
 Because oxygen-compression work is deducted when calculating net work, the complete system balance is evaluated as:
 
-\[
-Q_{in}
-=
-W_{net}
-+
-W_{O_2,comp}
-+
-Q_{out}
-\]
+$Q_{in}=W_{net}+W_{O_2,comp}+Q_{out}$
 
 The baseline residual is approximately:
 
-\[
-1.4\times10^{-14}\ {\rm MJ/kg_{H_2}}
-\]
+$1.4\times10^{-14}\ {\rm MJ/kg_{H_2}}$
 
 with a relative error of approximately:
 
-\[
-1.2\times10^{-14}\%
-\]
+$1.2\times10^{-14}\%$
 
 ### Stoichiometric mass balance
 
 For:
 
-\[
-2H_2+O_2\rightarrow2H_2O
-\]
+$2H_2+O_2\rightarrow2H_2O$
 
 the 1 kg H₂ basis gives:
 
-\[
-m_{H_2}=1\ {\rm kg}
-\]
+$m_{H_2}=1\ {\rm kg}$
 
-\[
-m_{O_2}=8\ {\rm kg}
-\]
+$m_{O_2}=8\ {\rm kg}$
 
-\[
-m_{H_2O}=9\ {\rm kg}
-\]
+$m_{H_2O}=9\ {\rm kg}$
 
 and the modeled reaction mass-balance residual is:
 
-\[
-\boxed{0.0\ {\rm kg}}
-\]
+$\boxed{0.0\ {\rm kg}}$
 
 These checks validate the numerical consistency of the implemented cycle model; they do not constitute validation against experimental plant data.
 
@@ -303,10 +259,8 @@ with 54 operating points.
 
 The efficiency difference was defined as:
 
-\[
-\Delta\eta=
-\eta_{DFSC}-\eta_{Rankine}
-\]
+$\Delta\eta=
+\eta_{DFSC}-\eta_{Rankine}$
 
 ### Observed trend
 
@@ -314,27 +268,19 @@ Across the modeled range, DFSC net efficiency remained below the conventional Ra
 
 The gap was smallest at:
 
-\[
-1000^\circ C,\ 30\ {\rm bar}
-\]
+$1000^\circ C,\ 30\ {\rm bar}$
 
 where:
 
-\[
-\Delta\eta\approx-0.56\ {\rm percentage\ points}
-\]
+$\Delta\eta\approx-0.56\ {\rm percentage\ points}$
 
 The largest modeled gap occurred at:
 
-\[
-600^\circ C,\ 150\ {\rm bar}
-\]
+$600^\circ C,\ 150\ {\rm bar}$
 
 where:
 
-\[
-\Delta\eta\approx-4.33\ {\rm percentage\ points}
-\]
+$\Delta\eta\approx-4.33\ {\rm percentage\ points}$
 
 At 100 bar, increasing turbine inlet temperature from 600 °C to 1000 °C increased modeled DFSC net efficiency from approximately 28.51% to 33.85%.
 
@@ -365,11 +311,7 @@ The model also evaluates the influence of O₂ compressor isentropic efficiency.
 
 At the baseline 75% compressor efficiency:
 
-\[
-\frac{W_{O_2}}{W_{gross}}
-\approx17.3\%
-\]
-
+$\frac{W_{O_2}}{W_{gross}}\approx17.3\%$
 Thus, oxygen compression is a significant modeled parasitic load.
 
 The sensitivity also shows diminishing incremental efficiency gains as compressor efficiency becomes higher.
